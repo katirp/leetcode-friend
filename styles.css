@@ -1,0 +1,23 @@
+.image {
+    height: 100px;
+    width: 100px;
+}
+
+body {
+    background-color: #849e55;
+    width: 300px;
+    height: 400px;
+}
+
+h1 {
+    font-size: 38px;
+}
+
+p {
+    font-size: 20px;
+}
+
+.background {
+    /* font-family:'Pixelify Sans' */
+    font-family:'Jacquarda Bastarda 9'
+}
