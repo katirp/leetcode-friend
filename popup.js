@@ -1,8 +1,9 @@
-import {getLeetcodeData} from './api/leetcode.js'
+import { getLeetcodeData } from './api/leetcode.js'
+import { Friend } from './friend.js'
 
-console.log("This is a popup!")
+let newFriend;
 
-// Function to save the username to Chrome storage
+// Save username button clicked
 document.getElementById('saveButton').addEventListener('click', () => {
     const username = document.getElementById('username').value.trim();
   
@@ -14,24 +15,50 @@ document.getElementById('saveButton').addEventListener('click', () => {
     } else {
       document.getElementById('status').textContent = 'Please enter a valid username.';
     }
-  });
-  
-  // Retrieve and display the username if it exists
-  document.addEventListener('DOMContentLoaded', () => {
+});
+
+// DOM content loaded 
+document.addEventListener('DOMContentLoaded', () => {
+    // load username
     chrome.storage.local.get(['leetcodeUsername'], async (result) => {
-        
         if (result.leetcodeUsername) {
         document.getElementById('username').value = result.leetcodeUsername;
         document.getElementById('status').textContent = 'Username loaded!';
         try {
             const submissions = await getLeetcodeData(result.leetcodeUsername);
             console.log('Recent submissions:', submissions);
-          } catch (error) {
+            } catch (error) {
             console.error('Failed to fetch submissions:', error);
-          }
-      } else {
+            }
+        } else {
         console.log('No username saved.');
-      }
+        }
     });
-  });
+    newFriend = new Friend();
+    updateDisplay(newFriend);
+});
+
+document.getElementById('ageButton').addEventListener('click', () => {
+    if (newFriend) {
+        newFriend.increaseAge();
+        updateDisplay(newFriend);
+    } else {
+        console.error('Friend Object is not initialized')
+    }
+});
+
+function updateDisplay(friend) {
+    const imageElement = document.getElementById('characterImage');
+    const statsElement = document.getElementById('characterStats');
+
+    if (!imageElement || !statsElement) {
+        console.error('DOM elements not found!');
+        return;
+    }
+
+    imageElement.src = friend.image;
+    statsElement.textContent = `Health: ${friend.health}, Age: ${friend.age}`;
+    console.log(`Updated image to: ${friend.image}`);
+    console.log(`Updated stats to: Health - ${friend.health}, Age - ${friend.age}`);
+}
   

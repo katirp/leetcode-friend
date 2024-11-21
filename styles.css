@@ -4,9 +4,13 @@
 }
 
 body {
-    background-color: #849e55;
+    background-color: #75916c;
     width: 300px;
     height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 3px solid rgb(0, 0, 0); /* Create space for the inward border */
 }
 
 h1 {
@@ -14,10 +18,16 @@ h1 {
 }
 
 p {
-    font-size: 20px;
+    font-size: 23px;
+}
+
+@font-face {
+    font-family: "Nintendo DS";
+    src: url('./fonts/Nintendo-DS-BIOS.ttf') format('truetype');
 }
 
 .background {
     /* font-family:'Pixelify Sans' */
-    font-family:'Jacquarda Bastarda 9'
+    /* font-family:'Jacquarda Bastarda 9' */
+    font-family: 'Nintendo DS', 'Pixelify Sans';
 }
