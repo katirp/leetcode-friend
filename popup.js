@@ -1,19 +1,19 @@
-import { getLeetcodeData } from './api/leetcode.js'
-import { Friend } from './friend.js'
+import { getLeetcodeData } from './api/leetcode.js';
+import { Friend } from './friend.js';
 
 let newFriend;
 
 // Save username button clicked
 document.getElementById('saveButton').addEventListener('click', () => {
     const username = document.getElementById('username').value.trim();
-  
+
     if (username) {
-      // Save username to Chrome's storage
-      chrome.storage.local.set({ leetcodeUsername: username }, () => {
-        document.getElementById('status').textContent = 'Username saved successfully!';
-      });
+        // Save username to Chrome's storage
+        chrome.storage.local.set({ leetcodeUsername: username }, () => {
+            document.getElementById('status').textContent = 'Username saved successfully!';
+        });
     } else {
-      document.getElementById('status').textContent = 'Please enter a valid username.';
+        document.getElementById('status').textContent = 'Please enter a valid username.';
     }
 });
 
@@ -22,22 +22,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     // load username
     chrome.storage.local.get(['leetcodeUsername'], async (result) => {
         if (result.leetcodeUsername) {
-        document.getElementById('username').value = result.leetcodeUsername;
-        document.getElementById('status').textContent = 'Username loaded!';
-        try {
-            const { recentSubmissions, submissionCalendar } = await getLeetcodeData(result.leetcodeUsername);
-            console.log('Recent submissions:', recentSubmissions);
-            console.log('Submission Calendar:', submissionCalendar);
-            console.log(processLeetCodeData(recentSubmissions, submissionCalendar));
+            document.getElementById('username').value = result.leetcodeUsername;
+            document.getElementById('status').textContent = 'Username loaded!';
+            try {
+                const { recentSubmissions, submissionCalendar } = await getLeetcodeData(result.leetcodeUsername);
+                console.log('Recent submissions:', recentSubmissions);
+                console.log('Submission Calendar:', submissionCalendar);
+                console.log(processLeetCodeData(recentSubmissions, submissionCalendar));
             } catch (error) {
-            console.error('Failed to fetch submissions:', error);
+                console.error('Failed to fetch submissions:', error);
             }
         } else {
-        console.log('No username saved.');
+            console.log('No username saved.');
         }
     });
     newFriend = await Friend.loadState();
-    console.log(newFriend)
+    console.log(newFriend);
     updateDisplay(newFriend);
 });
 
@@ -58,9 +58,9 @@ document.getElementById('decHealth').addEventListener('click', () => {
         updateFriend(newFriend);
         updateDisplay(newFriend);
     } else {
-        console.error('Friend Object is not initialized')
+        console.error('Friend Object is not initialized');
     }
-})
+});
 
 // refresh image and text on display
 function updateDisplay(friend) {
@@ -77,7 +77,7 @@ function updateDisplay(friend) {
     console.log(`Updated image to: ${friend.image}`);
     console.log(`Updated stats to: Health - ${friend.health}, Age - ${friend.age}`);
 }
-  
+
 function processLeetCodeData(recentSubmissions, submissionCalender) {
     // get the earliest "Accepted" timestamp for each titleSlug
     const earliestAccepted = recentSubmissions
@@ -112,7 +112,7 @@ function processLeetCodeData(recentSubmissions, submissionCalender) {
 }
 
 function updateFriend(friend) {
-// function updateFriend(friend, submissionDays, lastDateChecked) {
+    // function updateFriend(friend, submissionDays, lastDateChecked) {
     // const missedDays = 0;
     // const currentDay = Math.floor(Date.now() / 86400000);
     // const lastDay = Math.floor(lastDateChecked / 86400000);
@@ -134,7 +134,7 @@ function updateFriend(friend) {
     // // decrease days until evolution by days elapsed
     // friend.decreaseDaysUntilEvolution(currentDay - lastDay);
 
-    console.log(friend)
+    console.log(friend);
     if (friend.daysUntilEvolution === 0 && friend.health === 3 && friend.evolutionStage < 2) {
         friend.evolve();
     }
