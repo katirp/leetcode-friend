@@ -1,10 +1,23 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jacquarda+Bastarda+9&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+  </head>
   <body>
-    <h1>Leetcode Friend</h1>
-    <p>Enter your Leetcode username:</p>
-    <input type="text" id="username" placeholder="Leetcode username" />
-    <button id="saveButton">Save Username</button>
-    <p id="status"></p>
-    <script type="module" src="popup.js"></script>
+    <div class="background">
+      <h1>Leetcode Friend</h1>
+      <p>Enter your Leetcode username:</p>
+      <input type="text" id="username" placeholder="Leetcode username" />
+      <button id="saveButton">Save Username</button>
+      <p id="status"></p>
+      <img id="characterImage" src="images/egg.png" class="image"></img>
+      <p id="characterStats">Placeholder</p>
+      <p id="message"></p>
+      <button id="ageButton">Age Up</button>
+      <button id="decHealth">Decrease Health</button>
+      <script type="module" src="popup.js"></script>
+    </div>
   </body>
 </html>

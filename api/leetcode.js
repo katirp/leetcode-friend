@@ -11,17 +11,17 @@ export async function getLeetcodeData(user) {
     //graphql query
     const query = `
     query getUserProfile($username: String!) {
-    matchedUser(username: $username) {
-        submissionCalendar
-    }
-    recentSubmissionList(username: $username) {
-        title
-        titleSlug
-        timestamp
-        statusDisplay
-        lang
-        __typename
-    }
+        matchedUser(username: $username) {
+            submissionCalendar
+        }
+        recentSubmissionList(username: $username) {
+            title
+            titleSlug
+            timestamp
+            statusDisplay
+            lang
+            __typename
+        }
     }
     `;
     

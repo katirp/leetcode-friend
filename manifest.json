@@ -7,6 +7,6 @@
     "host_permissions": ["https://leetcode.com/*"],
     "action": {
       "default_popup": "index.html",
-      "default_icon": "hello_extensions.png"
+      "default_icon": "images/icon.png"
     }
 }
